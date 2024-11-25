@@ -13,7 +13,7 @@ eiaplugin plugin for Tutor
     ```console
     tutor plugins enable eiaplugin
 
-    tutor config save --set EMAIL_HOST='email-smtp.us-east-1.amazonaws.com' \
+    tutor config save --set EIAPLUGIN_EMAIL_HOST='email-smtp.us-east-1.amazonaws.com' \
                     --set EIAPLUGIN_EMAIL_HOST_USER='aws-iam-key' \
                     --set EIAPLUGIN_EMAIL_HOST_PASSWORD='aws-iam-secret' \
                     --set EIAPLUGIN_EMAIL_PORT=587 \
