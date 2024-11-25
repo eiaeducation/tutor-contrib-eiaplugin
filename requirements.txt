@@ -1,0 +1,10 @@
+# production requirements
+python-dotenv
+
+# Development requirements
+tutor
+click
+importlib_resources
+setuptools
+black
+pylint

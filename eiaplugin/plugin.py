@@ -1,25 +1,56 @@
+"""
+This file is the main entry point for your plugin. It is loaded by Tutor.
+
+Implements the AWS SES email services
+- AWS account: 120088116466
+- https://us-east-1.console.aws.amazon.com/ses/home?region=us-east-1#/account
+- Verified email identity: eiaeducation.org
+
+
+AWS sending limits
+- Daily sending quota: 50,000 emails per 24-hour period
+- Maximum send rate: 14 emails per second
+
+AWS IAM user credentials
+- user: https://us-east-1.console.aws.amazon.com/iam/home#/users/details/ses-smtp-user.20240229-070321
+"""
 from __future__ import annotations
 
 import os
 from glob import glob
 
+# pylint: disable=w0611
 import click
 import importlib_resources
+from dotenv import load_dotenv
 from tutor import hooks
 
 from .__about__ import __version__
 
+load_dotenv()
+
 ########################################
 # CONFIGURATION
 ########################################
+config = {
+    "defaults": {
+        "VERSION": __version__,
+
+        # AWS SES email settings
+        "EMAIL_HOST": os.environ.get('EIAPLUGIN_EMAIL_HOST', "email-smtp.us-east-1.amazonaws.com"),
+        "EMAIL_HOST_USER": os.environ.get('EIAPLUGIN_EMAIL_HOST_USER', "SET-ME-IN-EIAPLUGIN"),
+        "EMAIL_HOST_PASSWORD": os.environ.get('EIAPLUGIN_EMAIL_HOST_PASSWORD', "SET-ME-IN-EIAPLUGIN"),
+        "EMAIL_PORT": os.environ.get('EIAPLUGIN_EMAIL_PORT', 587),
+        "EMAIL_USE_TLS": os.environ.get('EIAPLUGIN_EMAIL_USE_TLS', True),
+
+        # other lesser used openedx email settings
+        "LTI_USER_EMAIL_DOMAIN": "eiaeducation.org",
+        "SSL_AUTH_EMAIL_DOMAIN": "eiaeducation.org",
+    },
+}
 
 hooks.Filters.CONFIG_DEFAULTS.add_items(
-    [
-        # Add your new settings that have default values here.
-        # Each new setting is a pair: (setting_name, default_value).
-        # Prefix your setting names with 'EIAPLUGIN_'.
-        ("EIAPLUGIN_VERSION", __version__),
-    ]
+    [(f"EIAPLUGIN_{key}", value) for key, value in config.get("defaults", {}).items()]
 )
 
 hooks.Filters.CONFIG_UNIQUE.add_items(

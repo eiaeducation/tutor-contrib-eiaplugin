@@ -1,3 +1,5 @@
+"""Setup script for the eiaplugin plugin for Tutor."""
+
 import io
 import os
 
@@ -7,11 +9,17 @@ HERE = os.path.abspath(os.path.dirname(__file__))
 
 
 def load_readme():
+    """
+    Load the README file.
+    """
     with io.open(os.path.join(HERE, "README.rst"), "rt", encoding="utf8") as f:
         return f.read()
 
 
 def load_about():
+    """
+    Load the __about__.py file.
+    """
     about = {}
     with io.open(
         os.path.join(HERE, "eiaplugin", "__about__.py"),
@@ -42,7 +50,7 @@ setup(
     packages=find_packages(exclude=["tests*"]),
     include_package_data=True,
     python_requires=">=3.9",
-    install_requires=["tutor>=18.0.0,<19.0.0"],
+    install_requires=["tutor>=18.0.0,<19.0.0","python-dotenv"],
     extras_require={
         "dev": [
             "tutor[dev]>=18.0.0,<19.0.0",
