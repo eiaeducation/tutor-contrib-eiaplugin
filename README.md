@@ -5,6 +5,8 @@ eiaplugin plugin for Tutor
 ## Installation
 
 ```console
+ssh -i ~/.ssh/eia-openedx-redwood.pem -o IdentitiesOnly=yes ubuntu@eiaeducation.org
+source venv/bin/activate
 pip install git+https://github.com/eiaeducation/tutor-contrib-eiaplugin
 ```
 
