@@ -54,11 +54,23 @@ tutor config save --set EIAPLUGIN_AWS_SES_REGION_NAME='us-east-1' \
 ## Defaults
 
 ```python
-EIAPLUGIN_EMAIL_HOST = "email-smtp.us-east-1.amazonaws.com"
+EIAPLUGIN_EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EIAPLUGIN_EMAIL_HOST = 'email-smtp.us-east-1.amazonaws.com'
 EIAPLUGIN_EMAIL_PORT = 587
 EIAPLUGIN_EMAIL_USE_TLS = True
-EIAPLUGIN_LTI_USER_EMAIL_DOMAIN = "eiaeducation.org"
-EIAPLUGIN_SSL_AUTH_EMAIL_DOMAIN = "eiaeducation.org"
+EIAPLUGIN_DEFAULT_FROM_EMAIL = 'contact@eiaeducation.org'
+
+# LTI email settings
+EIAPLUGIN_LTI_USER_EMAIL_DOMAIN = 'eiaeducation.org'
+EIAPLUGIN_SSL_AUTH_EMAIL_DOMAIN = 'eiaeducation.org' 
+
+# edX ACE settings
+EIAPLUGIN_ACE_CHANNEL_DEFAULT_EMAIL = 'sailthru_email'
+EIAPLUGIN_ACE_CHANNEL_TRANSACTIONAL_EMAIL = 'django_email'
+
+# AWS SES settings
+EIAPLUGIN_AWS_SES_REGION_NAME = 'us-east-1'
+EIAPLUGIN_AWS_SES_REGION_ENDPOINT = 'email.us-east-1.amazonaws.com'
 ```
 
 ## AWS Simple Email Service (SES)
