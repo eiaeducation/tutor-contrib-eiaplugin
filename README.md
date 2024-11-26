@@ -8,6 +8,15 @@ eiaplugin plugin for Tutor
 ssh -i ~/.ssh/eia-openedx-redwood.pem -o IdentitiesOnly=yes ubuntu@eiaeducation.org
 source venv/bin/activate
 pip install git+https://github.com/eiaeducation/tutor-contrib-eiaplugin
+tutor plugins enable eiaplugin
+tutor plugins list
+```
+
+To uninstall:
+
+```console
+tutor plugins disable eiaplugin
+pip uninstall tutor-contrib-eiaplugin -y
 ```
 
 ## Usage
@@ -37,6 +46,18 @@ EIAPLUGIN_EMAIL_USE_TLS = True
 EIAPLUGIN_LTI_USER_EMAIL_DOMAIN = "eiaeducation.org"
 EIAPLUGIN_SSL_AUTH_EMAIL_DOMAIN = "eiaeducation.org"
 ```
+
+## AWS Simple Email Service (SES)
+
+The Open edX platform uses AWS SES as the backend SMTP email service, running from the us-east-1 data center. 
+See [https://us-east-1.console.aws.amazon.com/ses/](https://us-east-1.console.aws.amazon.com/ses/home?region=us-east-1#/smtp) for settings details.
+
+### Important Configuration Notes
+
+- username / password must be generated using the ['Create SMTP credentials'](https://console.aws.amazon.com/iam/home?SESRegion=us-east-1#/users/smtp/create) action button on the top-right of the AWS SES Settings console page
+- EIAPLUGIN_EMAIL_HOST_USER is the AWS IAM key pair 'key' generated from this utility
+- EIAPLUGIN_EMAIL_HOST_PASSWORD is the AWS IAM key pair 'secret' generated form this utility
+- review the existing settings on the production server by opening the file /home/ubuntu/.local/share/tutor/config.yml
 
 ## edx ACE
 
