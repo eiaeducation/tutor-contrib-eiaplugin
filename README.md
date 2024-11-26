@@ -22,6 +22,8 @@ tutor config save --set EIAPLUGIN_AWS_SES_REGION_NAME='us-east-1' \
                   --set EIAPLUGIN_EMAIL_HOST_PASSWORD='aws-iam-secret' \
                   --set EIAPLUGIN_EMAIL_PORT=587 \
                   --set EIAPLUGIN_EMAIL_USE_TLS=true  \
+                  --set EIAPLUGIN_ACE_CHANNEL_DEFAULT_EMAIL='sailthru_email' \
+                  --set EIAPLUGIN_ACE_CHANNEL_TRANSACTIONAL_EMAIL='django_email' \
                   --set EIAPLUGIN_LTI_USER_EMAIL_DOMAIN='eiaeducation.org' \
                   --set EIAPLUGIN_SSL_AUTH_EMAIL_DOMAIN='eiaeducation.org' \
 ```
