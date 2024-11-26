@@ -1,6 +1,6 @@
 # eiaplugin plugin for [tutor](https://docs.tutor.edly.io)
 
-eiaplugin plugin for Tutor
+EIA Open edX tutor plugin for managing integration to AWS Simple Email Service (SES).
 
 ## Installation
 
@@ -10,6 +10,20 @@ source venv/bin/activate
 pip install git+https://github.com/eiaeducation/tutor-contrib-eiaplugin
 tutor plugins enable eiaplugin
 tutor plugins list
+```
+
+To monitor email log data:
+
+```console
+tutor local logs --tail=100 -f lms lms-worker smtp
+```
+
+To review email settings in your production environment
+
+```console
+tutor local run lms sh
+   cd lpm/envs/tutor
+   cat production.py
 ```
 
 To uninstall:
