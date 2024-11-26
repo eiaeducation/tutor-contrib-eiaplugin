@@ -36,6 +36,29 @@ EIAPLUGIN_LTI_USER_EMAIL_DOMAIN = "eiaeducation.org"
 EIAPLUGIN_SSL_AUTH_EMAIL_DOMAIN = "eiaeducation.org"
 ```
 
+## edx ACE
+
+A `send_mail()` channel for edX ACE.
+
+This is both useful for providing an alternative to Sailthru and to debug ACE mail by
+inspecting `django.core.mail.outbox`.
+
+Example:
+
+```python
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'email-smtp.us-east-1.amazonaws.com'
+DEFAULT_FROM_EMAIL = 'contact@eiaeducation.org'
+
+ACE_CHANNEL_DEFAULT_EMAIL = 'sailthru_email'
+ACE_CHANNEL_TRANSACTIONAL_EMAIL = 'django_email'
+
+ACE_ENABLED_CHANNELS = [
+    'sailthru_email',
+    'django_email',
+]
+```
+
 ## Support
 
 | Author       | [Lawrence McDaniel](https://www.linkedin.com/in/lawrencemcdaniel/) |

@@ -35,16 +35,22 @@ load_dotenv()
 config = {
     "defaults": {
         "VERSION": __version__,
+        # ACE Channel settings
+        "ACE_CHANNEL_DEFAULT_EMAIL": 'sailthru_email',
+        "ACE_CHANNEL_TRANSACTIONAL_EMAIL": 'django_email',
+
         # AWS SES settings
         "AWS_SES_REGION_NAME": os.environ.get('AWS_SES_REGION_NAME', "us-east-1"),
         "AWS_SES_REGION_ENDPOINT": os.environ.get('AWS_SES_REGION_ENDPOINT', "email.us-east-1.amazonaws.com"),
 
         # AWS SES email settings
+        "EMAIL_BACKEND": "django.core.mail.backends.smtp.EmailBackend",
         "EMAIL_HOST": os.environ.get('EIAPLUGIN_EMAIL_HOST', "email-smtp.us-east-1.amazonaws.com"),
         "EMAIL_HOST_USER": os.environ.get('EIAPLUGIN_EMAIL_HOST_USER', "SET-ME-IN-EIAPLUGIN"),
         "EMAIL_HOST_PASSWORD": os.environ.get('EIAPLUGIN_EMAIL_HOST_PASSWORD', "SET-ME-IN-EIAPLUGIN"),
         "EMAIL_PORT": os.environ.get('EIAPLUGIN_EMAIL_PORT', 587),
         "EMAIL_USE_TLS": os.environ.get('EIAPLUGIN_EMAIL_USE_TLS', True),
+        "DEFAULT_FROM_EMAIL": os.environ.get('EIAPLUGIN_DEFAULT_FROM_EMAIL', "contact@eiaeducation.org"),
 
         # other lesser used openedx email settings
         "LTI_USER_EMAIL_DOMAIN": "eiaeducation.org",
