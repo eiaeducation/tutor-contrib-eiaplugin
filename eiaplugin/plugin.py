@@ -35,6 +35,9 @@ load_dotenv()
 config = {
     "defaults": {
         "VERSION": __version__,
+        # AWS SES settings
+        "AWS_SES_REGION_NAME": os.environ.get('AWS_SES_REGION_NAME', "us-east-1"),
+        "AWS_SES_REGION_ENDPOINT": os.environ.get('AWS_SES_REGION_ENDPOINT', "email.us-east-1.amazonaws.com"),
 
         # AWS SES email settings
         "EMAIL_HOST": os.environ.get('EIAPLUGIN_EMAIL_HOST', "email-smtp.us-east-1.amazonaws.com"),
